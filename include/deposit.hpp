@@ -12,18 +12,62 @@ class [[eosio::contract("deposit")]] deposit : public contract {
 public:
     using contract::contract;
 
+    /**
+     * ## ACTION `receipt`
+     *
+     * Creates a receipt of incoming deposit and stores row in database
+     *
+     * - Authority:  `get_self()`
+     *
+     * ### params
+     *
+     * - `{name} from` - account which sent deposit
+     * - `{asset} quantity` - amount of deposit
+     * - `{string} memo` - memo used
+     * - `{time_point_sec} timestamp` - time of deposit
+     * - `{checksum256} trx_id` - transaction id
+     *
+     * ### example
+     *
+     * ```bash
+     * cleos push action deposit push '["myaccount", "1.0000 EOS", "12345", "2019-11-14T12:00:00", "<TRANSACTION ID>"]' -p deposit
+     * ```
+     */
+    [[eosio::action]]
+    void receipt( const eosio::name from, const eosio::asset quantity, const string memo, const eosio::time_point_sec timestamp, const eosio::checksum256 trx_id );
+
     [[eosio::on_notify("*::transfer")]]
     void transfer( const name&    from,
                    const name&    to,
                    const asset&   quantity,
                    const string&  memo );
 
-    [[eosio::action]]
-    void receipt( const eosio::name from, const eosio::asset quantity, const string memo, const eosio::time_point_sec timestamp, const eosio::checksum256 trx_id );
-
     using receipt_action = eosio::action_wrapper<"receipt"_n, &deposit::receipt>;
 
 private:
+    /**
+     * ## TABLE `deposits`
+     *
+     * - `{uint64_t} id` - deposit id
+     * - `{name} from` - account which sent deposit
+     * - `{asset} quantity` - amount of deposit
+     * - `{string} memo` - memo used
+     * - `{time_point_sec} timestamp` - time of deposit
+     * - `{checksum256} trx_id` - transaction id
+     *
+     * ### example
+     *
+     * ```json
+     * {
+     *   "id": 1,
+     *   "from": "myaccount",
+     *   "quantity": "1.0000 EOS",
+     *   "memo": "12345",
+     *   "timestamp": "2019-11-14T12:00:00",
+     *   "trx_id": "<TRANSACTION ID>",
+     * }
+     * ```
+     */
     struct [[eosio::table("deposits")]] deposits_row {
         uint64_t                id;
         eosio::name             from;
