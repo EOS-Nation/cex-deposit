@@ -24,7 +24,9 @@ void deposit::transfer( const name&    from,
     check ( memo.length() > 0, "memo must not be blank");
 
     // send receipt (optional)
-    receipt( from, quantity, memo, current_time_point(), get_trx_id() );
+    // contract account must have `<deposit>@eosio.code` permission setup
+    deposit::receipt_action receipt( get_self(), { get_self(), "active"_n });
+    receipt.send( from, quantity, memo, current_time_point(), get_trx_id() );
 }
 
 void deposit::receipt( const eosio::name from, const eosio::asset quantity, const string memo, const eosio::time_point_sec timestamp, const eosio::checksum256 trx_id )

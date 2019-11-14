@@ -29,6 +29,18 @@
 $ ./build.sh
 ```
 
+## Deploy contract
+
+```bash
+$ cleos set contract <ACCOUNT> ./dist deposit.wasm deposit.abi
+```
+
+## Add `<account>@eosio.code`
+
+```bash
+$ cleos set account permission <ACCOUNT> active <ACCOUNT> owner --add-code
+```
+
 # EOSIO Smart Contract
 
 ## ACTION `receipt`
