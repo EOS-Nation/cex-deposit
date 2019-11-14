@@ -24,6 +24,8 @@
 
 ## Examples - cURL
 
+[/v1/chain/get_table_rows](https://developers.eos.io/eosio-nodeos/reference#get_table_rows)
+
 ```bash
 curl --request POST \
   --url http://jungle.eosn.io/v1/chain/get_table_rows \
@@ -49,6 +51,24 @@ curl --request POST \
   "more": false,
   "next_key": ""
 }
+```
+
+## Examples - Python
+
+```python
+import requests
+
+url = "http://jungle.eosn.io/v1/chain/get_table_rows"
+
+payload = "{\"code\":\"deposits1111\",\"table\":\"deposits\",\"scope\":\"deposits1111\"}"
+headers = {
+    'accept': "application/json",
+    'content-type': "application/json"
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
 ```
 
 ## Deploy contract using `cleos`
