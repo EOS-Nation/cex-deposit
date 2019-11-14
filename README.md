@@ -1,5 +1,11 @@
 # CEX Deposit
 
+> Handles incoming EOS token transfers to Centralized Exchange deposit account.
+
+## Chains
+
+- [Jungle](https://jungle.bloks.io/account/deposits1111)
+
 ## Basic Features
 
 - [x] Must be `eosio.token` contract & `EOS` symbol (no fake EOS)

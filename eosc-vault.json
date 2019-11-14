@@ -1,0 +1,7 @@
+{
+  "kind": "eosc-vault-wallet",
+  "version": 1,
+  "comment": "Jungle Account - deposits1111",
+  "secretbox_wrap": "passphrase",
+  "secretbox_ciphertext": "TcFSDFQ0g7ruEN0jv4o0bETGgVYI+iKOvxMs62EukJzVdEkZN27RmgrjnkLqbq41cvE1BfMvDpwecs6+TpXAnzTy1MkXFKM8pchGcS1T80+FwkrgDgE+uASmKaVGWIuvNQu/ACafPx2aTyad/0o6qQC7KVwFQyD1"
+}

@@ -9,3 +9,6 @@ eosio-cpp -abigen \
   -R resource \
   -o ./dist/deposit.wasm \
   -I include
+
+deniscarrier
+deposit12345
