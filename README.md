@@ -31,7 +31,7 @@ curl --request POST \
   --url http://jungle.eosn.io/v1/chain/get_table_rows \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
-  --data '{"code":"deposits1111","table":"deposits","scope":"deposits1111","json":true}' | jq .
+  --data '{"code":"deposits1111","table":"incoming","scope":"deposits1111","json":true}' | jq .
 ```
 
 **output**
@@ -60,7 +60,7 @@ import requests
 
 url = "http://jungle.eosn.io/v1/chain/get_table_rows"
 
-payload = "{\"code\":\"deposits1111\",\"table\":\"deposits\",\"scope\":\"deposits1111\"}"
+payload = "{\"code\":\"deposits1111\",\"table\":\"incoming\",\"scope\":\"deposits1111\"}"
 headers = {
     'accept': "application/json",
     'content-type': "application/json"
