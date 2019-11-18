@@ -36,17 +36,17 @@ public:
     [[eosio::action]]
     void receipt( const eosio::name from, const eosio::asset quantity, const string memo, const eosio::time_point_sec timestamp, const eosio::checksum256 trx_id );
 
+    [[eosio::action]]
+    void clean( const eosio::name table, const std::optional<eosio::name> scope );
+
     [[eosio::on_notify("*::transfer")]]
-    void transfer( const name&    from,
-                   const name&    to,
-                   const asset&   quantity,
-                   const string&  memo );
+    void transfer( const name from, const name to, const asset quantity, const string memo );
 
     using receipt_action = eosio::action_wrapper<"receipt"_n, &deposit::receipt>;
 
 private:
     /**
-     * ## TABLE `deposits`
+     * ## TABLE `incoming` & `outgoing` deposits
      *
      * - `{uint64_t} id` - deposit id
      * - `{name} from` - account which sent deposit
@@ -68,7 +68,7 @@ private:
      * }
      * ```
      */
-    struct [[eosio::table("deposits")]] deposits_row {
+    struct deposits_row {
         uint64_t                id;
         eosio::name             from;
         eosio::asset            quantity;
@@ -79,9 +79,20 @@ private:
         uint64_t primary_key() const { return id; }
     };
 
+    struct [[eosio::table("outgoing")]] outgoing_row : public deposits_row{
+        uint64_t primary_key() const { return id; }
+    };
+
+    struct [[eosio::table("incoming")]] incoming_row : public deposits_row{
+        uint64_t primary_key() const { return id; }
+    };
+
     // Tables
-    typedef eosio::multi_index< "deposits"_n, deposits_row> deposits_table;
+    typedef eosio::multi_index< "incoming"_n, incoming_row> incoming_table;
+    typedef eosio::multi_index< "outgoing"_n, outgoing_row> outgoing_table;
 
     // private helpers
     checksum256 get_trx_id();
+    void incoming( const name from, const name to, const asset quantity, const string memo );
+    void outgoing( const name from, const name to, const asset quantity, const string memo );
 };

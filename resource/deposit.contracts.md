@@ -3,3 +3,9 @@
 ## Description
 
 Creates a receipt of incoming deposit
+
+<h1 class="contract">clean</h1>
+
+## Description
+
+Clean table row

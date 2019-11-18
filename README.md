@@ -106,7 +106,7 @@ Creates a receipt of incoming deposit and stores row in database
 cleos push action deposit push '["myaccount", "1.0000 EOS", "12345", "2019-11-14T12:00:00", "<TRANSACTION ID>"]' -p deposit
 ```
 
-## TABLE `deposits`
+## TABLE `incoming` & `outgoing` deposits
 
 - `{uint64_t} id` - deposit id
 - `{name} from` - account which sent deposit
