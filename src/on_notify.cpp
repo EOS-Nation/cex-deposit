@@ -1,6 +1,4 @@
 #include "deposit.hpp"
-#include "get_trx_id.cpp"
-#include "clean.cpp"
 
 [[eosio::on_notify("*::transfer")]]
 void deposit::transfer( const name from, const name to, const asset quantity, const string memo )
