@@ -1,5 +1,3 @@
-#include "deposit.hpp"
-
 [[eosio::on_notify("*::transfer")]]
 void deposit::transfer( const name from, const name to, const asset quantity, const string memo )
 {
