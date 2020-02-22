@@ -41,7 +41,7 @@ curl --request POST \
   "rows": [
     {
       "id": 0,
-      "from": "deniscarrier",
+      "from": "myaccount",
       "quantity": "1.0000 EOS",
       "memo": "foobar",
       "timestamp": "2019-11-14T17:23:45",
