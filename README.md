@@ -86,26 +86,6 @@ $ cleos set account permission <ACCOUNT> active <ACCOUNT> owner --add-code
 
 # EOSIO Smart Contract
 
-## ACTION `receipt`
-
-Creates a receipt of incoming deposit and stores row in database
-
-- Authority:  `get_self()`
-
-### params
-
-- `{name} from` - account which sent deposit
-- `{asset} quantity` - amount of deposit
-- `{string} memo` - memo used
-- `{time_point_sec} timestamp` - time of deposit
-- `{checksum256} trx_id` - transaction id
-
-### example
-
-```bash
-cleos push action deposit push '["myaccount", "1.0000 EOS", "12345", "2019-11-14T12:00:00", "<TRANSACTION ID>"]' -p deposit
-```
-
 ## TABLE `incoming` & `outgoing` deposits
 
 - `{uint64_t} id` - deposit id
@@ -127,3 +107,17 @@ cleos push action deposit push '["myaccount", "1.0000 EOS", "12345", "2019-11-14
   "trx_id": "<TRANSACTION ID>",
 }
 ```
+
+## ACTION `receipt`
+
+Creates a receipt of incoming deposit and stores row in database
+
+- Authority:  `get_self()`
+
+### params
+
+- `{name} from` - account which sent deposit
+- `{asset} quantity` - amount of deposit
+- `{string} memo` - memo used
+- `{time_point_sec} timestamp` - time of deposit
+- `{checksum256} trx_id` - transaction id
